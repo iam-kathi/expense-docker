@@ -11,14 +11,14 @@ services:
     - mysql:/var/lib/mysql  # -v mysql:/var/lib/mysql
   backend:
     image: bharathkumarkathi225/backend:v1
-    container_name: backend
-    command: sh -c "sleep 5 && node /opt/server/index.js"
+    container_name: backend          # for frontend, no need of volume,backend is just code
+    command: sh -c "sleep 5 && node /opt/server/index.js"   # after mysql is created, backend should give time to mysql to be up and then it can connect to mysql
     depends_on:
     - mysql
   frontend:
     image: bharathkumarkathi225/frontend:v1
     container_name: frontend
-    ports:       
+    ports:       # for frontend, no need of volume,frontend is just code
     - 80:80
     depends_on:
     - backend
