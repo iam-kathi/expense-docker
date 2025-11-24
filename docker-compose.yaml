@@ -6,9 +6,9 @@ volumes:
 services:
   mysql:
     image: bharathkumarkathi225/mysql:v1
-    container_name: mysql # --name mysql
+    container_name: mysql   # --name mysql
     volumes:
-    - mysql:/var/lib/mysql # -v mysql:/var/lib/mysql
+    - mysql:/var/lib/mysql  # -v mysql:/var/lib/mysql
   backend:
     image: bharathkumarkathi225/backend:v1
     container_name: backend
@@ -18,7 +18,7 @@ services:
   frontend:
     image: bharathkumarkathi225/frontend:v1
     container_name: frontend
-    ports:
+    ports:       
     - 80:80
     depends_on:
     - backend
