@@ -1,3 +1,15 @@
+FROM node:20.19.5-alpine3.22
+EXPOSE 8080
+ENV DB_HOST="mysql"    
+RUN mkdir /opt/server
+WORKDIR /opt/server
+COPY package.json .           
+COPY *.js .                   
+RUN npm install              
+CMD ["node", "index.js"]
+
+
+
 # FROM node:20 AS builder
 # WORKDIR /opt/server
 # COPY package.json .
@@ -20,15 +32,15 @@
 
 
 # Before best practices implemented
-FROM node:20
-EXPOSE 8080
-ENV DB_HOST="mysql"    
-RUN mkdir /opt/server
-WORKDIR /opt/server
-COPY package.json .           
-COPY *.js .                   
-RUN npm install              
-CMD ["node", "index.js"]
+# FROM node:20
+# EXPOSE 8080
+# ENV DB_HOST="mysql"    
+# RUN mkdir /opt/server
+# WORKDIR /opt/server
+# COPY package.json .           
+# COPY *.js .                   
+# RUN npm install              
+# CMD ["node", "index.js"]
 
 # "mysql" --> this is important, as backend should be connected to mysql
 # package.json --> this is backend code we downloaded and extracted
