@@ -1,11 +1,14 @@
 FROM node:20.19.5-alpine3.22
 EXPOSE 8080
 ENV DB_HOST="mysql"    
-RUN mkdir /opt/server
+RUN addgroup -S expense && adduser -S expense -G expense
+RUN mkdir /opt/server.
+RUN chown -R expense:expense /opt/server
 WORKDIR /opt/server
 COPY package.json .           
 COPY *.js .                   
-RUN npm install              
+RUN npm install     
+USER expense         
 CMD ["node", "index.js"]
 
 
